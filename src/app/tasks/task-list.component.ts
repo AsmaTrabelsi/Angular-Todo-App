@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Task } from '../models/task.model';
+import { NewTask } from '../models/NewTask.dto';
+import { TaskService } from './task.service';
 
 @Component({
   selector: 'app-task-list',
@@ -10,24 +12,23 @@ import { Task } from '../models/task.model';
 })
 export class TaskListComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
-  date : Date = new Date();
-  newTaskTitle : string="";
+  constructor(private route: ActivatedRoute, private taskService :TaskService) { }
+  newTask: NewTask = new NewTask();
+  tasks = this.taskService.getAllTasks();
 
   ngOnInit(): void {
-    this.date  = new Date(this.route.snapshot.params['date']);
+    var strDate  = new Date(this.route.snapshot.params['date']);
+    this.newTask = new NewTask(this.newTask.title,new Date(strDate));
   }
-  tasks: Task[] = [
-    new Task("task1")
-  ]
+
 
 
   remove(existingTask: Task){
    var userConfirmed : boolean =  confirm('Are you sure that you want to remove the following task ? \n '+existingTask.title);
   
   if(userConfirmed){
-    this.tasks = this.tasks.filter(task => task.title != task.title);
-  }
+    this.taskService.removeTask(existingTask);
+    }
   }
   add(taskNgForm : NgForm){
     if(taskNgForm.touched == false){
@@ -36,15 +37,10 @@ export class TaskListComponent implements OnInit {
     if(taskNgForm.valid == false){
       return;
     }
-      this.tasks.push(new Task(this.newTaskTitle));
-      taskNgForm.reset({date: this.date}); // this.title=""
+    this.taskService.addTask(this.newTask);
+      taskNgForm.reset({date: this.newTask.date}); // this.title=""
   }
 
 }
 
 
-class NewTask{
-  constructor(public title : string="", public date: Date= new Date()){
-
-  }
-}
