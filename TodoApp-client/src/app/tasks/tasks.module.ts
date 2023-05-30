@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TaskListComponent } from './task-list.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { FormsModule } from '@angular/forms';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     MatDatepickerModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   exports:[
     TaskListComponent

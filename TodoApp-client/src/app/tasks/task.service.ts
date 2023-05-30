@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { NewTask } from '../models/NewTask.dto';
 import { Task } from '../models/task.model';
-
+import {HttpClient} from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
 
-  constructor() { }
+  constructor(private http : HttpClient) { }
  private  tasks = new BehaviorSubject([
     new Task("task1")
   ]);
