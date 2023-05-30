@@ -13,6 +13,27 @@
   width: 500px;
   margin: auto;
 }
+.input-group{
+  display: flex;
+  justify-content: center;
+  height: 50px;
+  padding-bottom: 11px;
+}
+input{
+  flex-grow: 1;
+  padding: 13px;
+  font-size: 16.5;
+  color: #1c1c1c;
+}
+::placeholder{
+  color: rgb(56, 56,56);
+}
+input:focus{
+  border-style: solid;
+  outline: none !important;
+  border: 1px solid rgb(48, 48, 48);
+  box-shadow: 0 0 10px rgb(171, 171, 171);
+}
 .done-button {
     background-color: #242424;
     color: #ffffff;
@@ -65,4 +86,14 @@
     border-style: none;
     cursor: pointer;
     height: 100%;
+  }
+
+  button :disabled{
+    background-color: gray;
+    cursor: default;
+  }
+  .validation-error{
+    color: red;
+    margin-bottom: 10px;
+
   }
