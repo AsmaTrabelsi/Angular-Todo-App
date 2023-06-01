@@ -1,8 +1,8 @@
-/*body {
+body {
     background-image: url('assets/240858.jpg');
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat;
-  }*/
+  }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

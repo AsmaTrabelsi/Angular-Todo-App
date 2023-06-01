@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CalendarComponent } from './calendar/calendar.component';
-import { TaskListComponent } from './tasks/task-list.component';
+import { TodoListComponent } from './test/todo-list/todo-list.component';
 
 const routes: Routes = [
-  {path :'', component: CalendarComponent},
-  {path: 'tasks', component : TaskListComponent}
+  { path: 'tasks/:date', component: TodoListComponent }
+
 ];
 
 @NgModule({

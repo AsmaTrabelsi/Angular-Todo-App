@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Tag(name = "Task Management")
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/todos")

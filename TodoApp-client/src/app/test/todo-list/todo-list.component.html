@@ -1,0 +1,14 @@
+
+<div class="card bg-gray border-white mb-3">
+  <div class="card-body">
+    <h2>Todo List</h2>
+    <div *ngIf="tasks.length === 0">
+      No todos found.
+    </div>
+    <ul *ngIf="tasks.length > 0">
+      <li *ngFor="let task of tasks">
+        {{ task.title }}
+      </li>
+    </ul>
+  </div>
+</div>
