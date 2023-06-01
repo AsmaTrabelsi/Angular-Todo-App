@@ -1,8 +1,12 @@
 package com.example.todolistapi.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
+import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -12,9 +16,12 @@ import java.util.Date;
 @NoArgsConstructor
 public class Task {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Setter(AccessLevel.NONE)
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotBlank
     private String title;
-    private Date date;
+    @NotNull
+    private LocalDate dueDate;
 }

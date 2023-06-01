@@ -14,7 +14,7 @@ export class TaskListComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private taskService :TaskService) { }
   newTask: NewTask = new NewTask();
-  tasks = this.taskService.getAllTasks();
+  tasks = this.taskService.getAllTasks(this.route.snapshot.params['date']);
 
   ngOnInit(): void {
     var strDate  = new Date(this.route.snapshot.params['date']);

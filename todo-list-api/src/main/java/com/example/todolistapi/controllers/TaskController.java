@@ -4,42 +4,40 @@ import com.example.todolistapi.Repositories.TaskRepository;
 import com.example.todolistapi.entities.Task;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
-
+import java.time.LocalDate;
 import java.util.List;
 
 @Tag(name = "Task Management")
+@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("task")
+@RequestMapping("/api/todos")
 public class TaskController {
 
     private final TaskRepository taskRepository;
 
-    @GetMapping
-    public List<Task> getAllEvents() {
-        return taskRepository.findAll();
-    }
 
-    @GetMapping("/{id}")
-    public Task getEventById(@PathVariable int id) {
-        return taskRepository.findById(id).orElse(null);
+    @GetMapping("/{date}")
+    public List<Task> getAllTasksByDate(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        return taskRepository.findByDueDate(date);
     }
 
     @PostMapping
-    public void addEvent(@RequestBody Task task) {
+    public void addTask(@RequestBody Task task) {
         taskRepository.save(task);
     }
 
     @PutMapping
-    public void updateEvent(@RequestBody Task task) {
+    public void updateTask(@RequestBody Task task) {
 
         taskRepository.save(task);
     }
 
 
     @DeleteMapping("/{id}")
-    public void deleteEvent(@PathVariable int id) {
+    public void deleteTask(@PathVariable int id) {
         taskRepository.deleteById(id);
     }
 }
